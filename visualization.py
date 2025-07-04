@@ -109,7 +109,7 @@ class Visu():
             " return"
             + str(self.ret)
         )
-        plt.savefig("fig"+str(self.iter)+".png")
+        # plt.savefig("fig"+str(self.iter)+".png")
         self.iter += 1
 
     def stiener_grid(self, items_loc, path=None, init=0):
