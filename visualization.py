@@ -68,17 +68,11 @@ class Visu():
                         is_obstacle = False
                         break
                 if is_obstacle:
-                    list_traj_subgrad.append("O")  # 不可达状态
+                    list_traj_subgrad.append("X")  # 不可达状态
                 else:
                     list_traj_subgrad.append("") # 可达状态
             else:
-                if self.env_params['domains']=="two_room":
-                    if ((4 <= x_grad[-1] <= 9 and 0 <= y_grad[-1] <= 1) or (4 <= x_grad[-1] <= 9 and  4 <= y_grad[-1] <= 6)):
-                        list_traj_subgrad.append("X")  # 障碍物
-                    else:
-                        list_traj_subgrad.append("")   # 可达状态
-                else:
-                    list_traj_subgrad.append([])  # 用空列表占位
+                list_traj_subgrad.append("") 
         
         print("x", x)
         print("y", y)
