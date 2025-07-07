@@ -228,19 +228,19 @@ def room_grid_world_graph_2(world_size):
     # action 1: go right
     a = grid_nodes[:, :-1].copy()
     a[0:4, 5:12] = np.zeros_like(a[0:4, 5:12])
-    a[6:10, 5:12] = np.zeros_like(a[6:10, 5:12])
+    a[6:11, 5:12] = np.zeros_like(a[6:11, 5:12])
     b = grid_nodes[:, 1:].copy()
     b[0:4, 5:12] = np.zeros_like(b[0:4, 5:12])
-    b[6:10, 5:12] = np.zeros_like(b[6:10, 5:12])
+    b[6:11, 5:12] = np.zeros_like(b[6:11, 5:12])
     graph.add_edges_from(zip(a.reshape(-1), b.reshape(-1)), action=1)
 
     # action 2: go up
     c = grid_nodes[:-1, :].copy()
     c[0:4, 6:12] = np.zeros_like(c[0:4, 6:12])
-    c[5:10, 6:12] = np.zeros_like(c[5:10, 6:12])
+    c[5:11, 6:12] = np.zeros_like(c[5:11, 6:12])
     d = grid_nodes[1:, :].copy()
     d[0:4, 6:12] = np.zeros_like(d[0:4, 6:12])
-    d[5:10, 6:12] = np.zeros_like(d[5:10, 6:12])
+    d[5:11, 6:12] = np.zeros_like(d[5:11, 6:12])
     graph.add_edges_from(zip(c.reshape(-1), d.reshape(-1)), action=2)
 
     # action 3: go left
@@ -351,19 +351,19 @@ def room_diag_reward_graph_2(world_size):
     # action 1: go right
     a = grid_nodes[:, :-1].copy()
     a[0:4, 5:12] = np.zeros_like(a[0:4, 5:12])
-    a[6:10, 5:12] = np.zeros_like(a[6:10, 5:12])
+    a[6:11, 5:12] = np.zeros_like(a[6:11, 5:12])
     b = grid_nodes[:, 1:].copy()
     b[0:4, 5:12] = np.zeros_like(b[0:4, 5:12])
-    b[6:10, 5:12] = np.zeros_like(b[6:10, 5:12])
+    b[6:11, 5:12] = np.zeros_like(b[6:11, 5:12])
     graph.add_edges_from(zip(a.reshape(-1), b.reshape(-1)), action=1)
 
     # action 2: go up
     c = grid_nodes[:-1, :].copy()
     c[0:4, 6:12] = np.zeros_like(c[0:4, 6:12])
-    c[5:10, 6:12] = np.zeros_like(c[5:10, 6:12])
+    c[5:11, 6:12] = np.zeros_like(c[5:11, 6:12])
     d = grid_nodes[1:, :].copy()
     d[0:4, 6:12] = np.zeros_like(d[0:4, 6:12])
-    d[5:10, 6:12] = np.zeros_like(d[5:10, 6:12])
+    d[5:11, 6:12] = np.zeros_like(d[5:11, 6:12])
 
     # action 2: go down
     graph.add_edges_from(zip(c.reshape(-1), d.reshape(-1)), action=2)
@@ -371,12 +371,12 @@ def room_diag_reward_graph_2(world_size):
     # left up
     e = grid_nodes[:-1, :-1].copy()
     e[0:4, 6:12] = np.zeros_like(e[0:4, 6:12])
-    e[6:9, 5:12] = np.zeros_like(e[6:9, 5:12])
+    e[6:10, 5:12] = np.zeros_like(e[6:10, 5:12])
     e[5, 5:11] = np.zeros_like(e[5, 5:11])
     e[0, 5] = np.zeros_like(e[0, 5])
     f = grid_nodes[1:, 1:].copy()
     f[0:4, 6:12] = np.zeros_like(f[0:4, 6:12])
-    f[6:9, 5:12] = np.zeros_like(f[6:9, 5:12])
+    f[6:10, 5:12] = np.zeros_like(f[6:10, 5:12])
     f[5, 5:11] = np.zeros_like(f[5, 5:11])
     f[0, 5] = np.zeros_like(f[0, 5])
     graph.add_edges_from(zip(e.reshape(-1), f.reshape(-1)), action=5)
