@@ -156,7 +156,7 @@ class Visu():
             " return"
             + str(self.ret)
         )
-        plt.savefig("fig"+str(self.iter)+".png")
+        # plt.savefig("fig"+str(self.iter)+".png")
         self.iter += 1
         return plt, f
         

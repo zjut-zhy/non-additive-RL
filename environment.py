@@ -373,12 +373,12 @@ def room_diag_reward_graph_2(world_size):
     e[0:4, 6:12] = np.zeros_like(e[0:4, 6:12])
     e[6:10, 5:12] = np.zeros_like(e[6:10, 5:12])
     e[5, 5:11] = np.zeros_like(e[5, 5:11])
-    e[0, 5] = np.zeros_like(e[0, 5])
+    e[0:3, 5] = np.zeros_like(e[0:3, 5])
     f = grid_nodes[1:, 1:].copy()
     f[0:4, 6:12] = np.zeros_like(f[0:4, 6:12])
     f[6:10, 5:12] = np.zeros_like(f[6:10, 5:12])
     f[5, 5:11] = np.zeros_like(f[5, 5:11])
-    f[0, 5] = np.zeros_like(f[0, 5])
+    f[0:3, 5] = np.zeros_like(f[0:3, 5])
     graph.add_edges_from(zip(e.reshape(-1), f.reshape(-1)), action=5)
 
     return graph
