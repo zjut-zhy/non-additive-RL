@@ -198,7 +198,7 @@ class Visu():
         ax.set_xticks(self.x_ticks, minor=True)
         # ax.xaxis.grid(True, which='minor')
         # plt.grid(axis='both', which='minor')
-        ax.grid(b=True, which='minor', axis="both",
+        ax.grid(visible=True, which='minor', axis="both",
                 color='k', linestyle='-', linewidth=0.8)
         plt.xlim([-0.5, self.x_shape-0.5])
         plt.ylim([-0.5, self.y_shape-0.5])
@@ -218,7 +218,7 @@ class Visu():
             " return"
             + str(self.ret)
         )
-        plt.savefig("fig"+str(self.iter)+".png")
+        # plt.savefig("fig"+str(self.iter)+".png")
         self.iter += 1
 
     def record(self, F_M, Jpi):
