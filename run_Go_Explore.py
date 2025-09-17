@@ -6,10 +6,10 @@ import torch
 from torch.distributions import Categorical
 from tqdm import tqdm
 
-from subrl.utils.environment import GridWorld
+from environment import GridWorld
 from subrl.utils.network import append_state
 from subrl.utils.network import policy as agent_net
-from subrl.utils.visualization import Visu
+from visualization import Visu
 from subpo import calculate_submodular_reward, compute_subpo_advantages
 from Go_Explore import run_srl_with_go_explore, evaluate_trained_policy
 workspace = "NM"

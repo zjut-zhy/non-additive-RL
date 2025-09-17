@@ -6,10 +6,10 @@ import torch
 from torch.distributions import Categorical
 from tqdm import tqdm
 
-from subrl.utils.environment import GridWorld
+from environment import GridWorld
 from subrl.utils.network import append_state
 from subrl.utils.network import policy as agent_net
-from subrl.utils.visualization import Visu
+from visualization import Visu
 from subpo import calculate_submodular_reward, compute_subpo_advantages
 
 def select_cell_from_archive(archive, current_step=0, total_steps=1):
@@ -30,7 +30,7 @@ def select_cell_from_archive(archive, current_step=0, total_steps=1):
     
     # 检查是否已达到总步数的4/5
     progress_ratio = current_step / total_steps if total_steps > 0 else 0
-    use_uniform_sampling = progress_ratio >= 0.8  # 4/5 = 0.8
+    use_uniform_sampling = progress_ratio >= 0.5  
     
     if use_uniform_sampling:
         # 使用均匀采样
@@ -127,7 +127,7 @@ def sample_excellent_trajectories(filepath: str,
     return sampled_trajectories
 
 # --- Core parameter setting ---
-EXPLORATION_STEPS = 50000  # The total number of exploration steps can be adjusted as needed, and the larger the value, the more thorough the exploration 
+EXPLORATION_STEPS = 100000  # The total number of exploration steps can be adjusted as needed, and the larger the value, the more thorough the exploration 
 
 # --- Go-Explore main  ---
 def run_srl_with_go_explore(env=GridWorld, params=None):
@@ -156,7 +156,7 @@ def run_srl_with_go_explore(env=GridWorld, params=None):
     optim = torch.optim.Adam(agent.parameters(), lr=params["alg"]["lr"])
     
     env.common_params["batch_size"]=1
-    env.initialize()
+    env.initialize(params["env"]["initial"])
     initial_state_tensor = env.state.clone()
     initial_state_id = initial_state_tensor.item()
     
@@ -187,7 +187,7 @@ def run_srl_with_go_explore(env=GridWorld, params=None):
         archive[cell_key_to_explore_from]['times_selected'] += 1
 
         # 3.2 前往 (Go To) 該細胞狀態
-        env.initialize()
+        env.initialize(params["env"]["initial"])
         for action in selected_cell_data['actions']:
             env.step(0, torch.tensor([action]))
 
@@ -365,7 +365,7 @@ def evaluate_trained_policy(agent, env, params, num_episodes=10):
     total_rewards = []
     
     for episode in range(num_episodes):
-        env.initialize()
+        env.initialize(params["env"]["initial"])
         mat_state = [env.state.clone()]
         mat_action = []
         
